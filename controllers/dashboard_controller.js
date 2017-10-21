@@ -1,4 +1,5 @@
 var db = require('../db');
+
 exports.getData = function(req, res) {
   var flights = db.get().collection('flights');
   flights.aggregate([{
@@ -15,7 +16,7 @@ exports.getData = function(req, res) {
       }
     }
   ], function(err, results) {
-    console.log(results);
+    // console.log(results);
     res.status(200).json(results);
   });
 };
