@@ -63,21 +63,7 @@ body.fixed-nav {
     font-family: 'FontAwesome'; }
   #mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse.collapsed:after {
     content: '\f105'; }
-  #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level,
-  #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level {
-    padding-left: 0; }
-    #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level > li > a,
-    #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level > li > a {
-      display: block;
-      padding: 0.5em 0; }
-      #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level > li > a:focus, #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level > li > a:hover,
-      #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level > li > a:focus,
-      #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level > li > a:hover {
-        text-decoration: none; }
-  #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level > li > a {
-    padding-left: 1em; }
-  #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level > li > a {
-    padding-left: 2em; }
+
   #mainNav .navbar-collapse .sidenav-toggler {
     display: none; }
   #mainNav .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link {
@@ -122,20 +108,7 @@ body.fixed-nav {
         padding: 0; }
         #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
           padding: 1em; }
-        #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level,
-        #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level {
-          padding-left: 0;
-          list-style: none; }
-          #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li,
-          #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li {
-            width: 250px; }
-            #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a,
-            #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a {
-              padding: 1em; }
-        #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a {
-          padding-left: 2.75em; }
-        #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a {
-          padding-left: 3.75em; }
+
     #mainNav .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link {
       min-width: 0; }
       #mainNav .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link:after {
@@ -247,14 +220,6 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link:hover {
     color: #adb5bd; }
 
-#mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a,
-#mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a {
-  color: #868e96; }
-  #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a:focus, #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a:hover,
-  #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a:focus,
-  #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a:hover {
-    color: #adb5bd; }
-
 #mainNav.navbar-dark .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link:after {
   color: #adb5bd; }
 
@@ -266,9 +231,6 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
       background-color: #495057; }
       #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a:focus, #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a:hover {
         color: white; }
-    #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level,
-    #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level {
-      background: #343a40; } }
 
 #mainNav.navbar-light .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
   color: rgba(0, 0, 0, 0.5); }
@@ -276,14 +238,6 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 #mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
   color: rgba(0, 0, 0, 0.5); }
   #mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item > .nav-link:hover {
-    color: rgba(0, 0, 0, 0.7); }
-
-#mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a,
-#mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a {
-  color: rgba(0, 0, 0, 0.5); }
-  #mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a:focus, #mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a:hover,
-  #mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a:focus,
-  #mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a:hover {
     color: rgba(0, 0, 0, 0.7); }
 
 #mainNav.navbar-light .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link:after {
@@ -297,9 +251,6 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
       background-color: #e9ecef; }
       #mainNav.navbar-light .navbar-collapse .navbar-sidenav li.active a:focus, #mainNav.navbar-light .navbar-collapse .navbar-sidenav li.active a:hover {
         color: #000; }
-    #mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level,
-    #mainNav.navbar-light .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level {
-      background: #f8f9fa; } }
 
 .card-body-icon {
   position: absolute;
