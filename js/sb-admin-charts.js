@@ -8,61 +8,11 @@ if (window.chartData == undefined) {
 $.ajax({
   url: 'http://localhost/dashboard',
   dataType: 'JSON',
+  async: false,
   success: function(data) {
     window.chartData = data;
-    console.log(window.chartData.labels);
-    console.log(window.chartData.data);
-    if (data.success == true) { // if true (1)
-      var ctx = document.getElementById("myAreaChart");
-      var myLineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: window.chartData.labels,
-          datasets: [{
-            label: "Sessions",
-            lineTension: 0.3,
-            backgroundColor: "rgba(2,117,216,0.2)",
-            borderColor: "rgba(2,117,216,1)",
-            pointRadius: 5,
-            pointBackgroundColor: "rgba(2,117,216,1)",
-            pointBorderColor: "rgba(255,255,255,0.8)",
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(2,117,216,1)",
-            pointHitRadius: 20,
-            pointBorderWidth: 2,
-            data: window.chartData.data,
-          }],
-        },
-        options: {
-          scales: {
-            xAxes: [{
-              time: {
-                unit: 'date'
-              },
-              gridLines: {
-                display: false
-              },
-              ticks: {
-                maxTicksLimit: 7
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                min: 0,
-                max: 40000,
-                maxTicksLimit: 5
-              },
-              gridLines: {
-                color: "rgba(0, 0, 0, .125)",
-              }
-            }],
-          },
-          legend: {
-            display: false
-          }
-        }
-      });
-    }
+    // console.log(window.chartData.labels);
+    // console.log(window.chartData.data);
   },
   error: function() {
     console.log('Error getting chart data');
@@ -72,6 +22,56 @@ $.ajax({
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
 // -- Area Chart Example
+var ctx = document.getElementById("myAreaChart");
+// console.log(window.chartData);
+var myLineChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: window.chartData.labels,
+    datasets: [{
+      label: "Flight Count",
+      lineTension: 0.3,
+      backgroundColor: "rgba(2,117,216,0.2)",
+      borderColor: "rgba(2,117,216,1)",
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(2,117,216,1)",
+      pointBorderColor: "rgba(255,255,255,0.8)",
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+      pointHitRadius: 20,
+      pointBorderWidth: 2,
+      data: window.chartData.data,
+    }],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'carrier'
+        },
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          maxTicksLimit: 20
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 60000,
+          maxTicksLimit: 6
+        },
+        gridLines: {
+          color: "rgba(0, 0, 0, .125)",
+        }
+      }],
+    },
+    legend: {
+      display: false
+    }
+  }
+});
 // -- Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
