@@ -28,22 +28,13 @@ flights.aggregate([{
     //series 1 values array
     var count = doc.count;
 
-    dim1.push({
-      "label": carrier
-    });
-    series1.push({
-      "value": count
-    });
+    dim1.push(carrier);
+    series1.push(count);
   }
 
-  var dataset = [{
-      "seriesname": "Flight Count",
-      "data": series1
-    }
-  ];
   var resObj = {
-    "dataset": dataset,
-    "categories": dim1
+    "labels": dim1,
+    "data": series1
   };
   res.status(200).json(resObj);
 });
