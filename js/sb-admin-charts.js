@@ -2,7 +2,7 @@
 // -- Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
-// Line chart for Flights Master
+// Pie chart for Flights Master
 chartData = {
   labels: [],
   data: []
@@ -12,50 +12,51 @@ $.ajax({
   dataType: 'JSON',
   success: function(data) {
     chartData = data;
-    var ctx = document.getElementById("myAreaChart");
-    // console.log(chartData);
-    var myLineChart = new Chart(ctx, {
-      type: 'bar',
+    var seq = palette('tol-rainbow', 14);
+    var ctx = document.getElementById("myPieChart");
+    var myPieChart = new Chart(ctx, {
+      type: 'pie',
       data: {
         labels: chartData.labels,
         datasets: [{
-          label: "Flight Count",
-          lineTension: 0.3,
-          backgroundColor: "rgba(2,117,216,0.2)",
-          borderColor: "rgba(2,117,216,1)",
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(2,117,216,1)",
-          pointBorderColor: "rgba(255,255,255,0.8)",
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgba(2,117,216,1)",
-          pointHitRadius: 20,
-          pointBorderWidth: 2,
           data: chartData.data,
+          legend: false,
+          backgroundColor: palette('tol-rainbow', chartData.data.length).map(function(hex) {
+            return '#' + hex;
+          })
         }],
       },
       options: {
-        scales: {
-          xAxes: [{
-            time: {
-              unit: 'carrier'
-            },
-            gridLines: {
-              display: false
-            },
-            ticks: {
-              maxTicksLimit: 20
+        pieceLabel: {
+          // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+          render: 'label',    
+          // precision for percentage, default is 0
+          precision: 0,
+          // identifies whether or not labels of value 0 are displayed, default is false
+          showZero: true,  
+          // font size, default is defaultFontSize
+          fontSize: 12,
+          // font color, can be color array for each data or function for dynamic color, default is defaultFontColor
+          fontColor: '#fff',
+          // font style, default is defaultFontStyle
+          fontStyle: 'normal',
+          // font family, default is defaultFontFamily
+          fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          // draw label in arc, default is false
+          arc: true,
+          // position to draw label, available value is 'default', 'border' and 'outside'
+          // default is 'default'
+          position: 'border',
+          // draw label even it's overlap, default is false
+          overlap: false,
+          // set images when `render` is 'image'
+          images: [
+            {
+              src: 'image.png',
+              width: 16,
+              height: 16
             }
-          }],
-          yAxes: [{
-            ticks: {
-              min: 0,
-              max: 60000,
-              maxTicksLimit: 6
-            },
-            gridLines: {
-              color: "rgba(0, 0, 0, .125)",
-            }
-          }],
+          ]
         },
         legend: {
           display: false
@@ -108,16 +109,4 @@ var myLineChart = new Chart(ctx, {
       display: false
     }
   }
-});
-// -- Pie Chart Example
-var ctx = document.getElementById("myPieChart");
-var myPieChart = new Chart(ctx, {
-  type: 'pie',
-  data: {
-    labels: ["Blue", "Red", "Yellow", "Green"],
-    datasets: [{
-      data: [12.21, 15.58, 11.25, 8.32],
-      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
-    }],
-  },
 });
