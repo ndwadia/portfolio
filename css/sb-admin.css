@@ -418,7 +418,6 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 }
 
 .row-margin {
-  margin: -16px !important;
-  margin-top: -16px !important;
+  margin-top: 0px !important;
   margin-bottom: -16px !important;
 }
