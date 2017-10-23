@@ -1,21 +1,23 @@
 // Chart.js scripts
-if (window.chartData == undefined) {
-  window.chartData = {
-    labels: [],
-    data: []
-  };
-}
+// -- Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#292b2c';
+// Line chart for Flights Master
+chartData = {
+  labels: [],
+  data: []
+};
 $.ajax({
   url: 'http://localhost/dashboard',
   dataType: 'JSON',
   success: function(data) {
-    window.chartData = data;
+    chartData = data;
     var ctx = document.getElementById("myAreaChart");
-    // console.log(window.chartData);
+    // console.log(chartData);
     var myLineChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: window.chartData.labels,
+        labels: chartData.labels,
         datasets: [{
           label: "Flight Count",
           lineTension: 0.3,
@@ -28,7 +30,7 @@ $.ajax({
           pointHoverBackgroundColor: "rgba(2,117,216,1)",
           pointHitRadius: 20,
           pointBorderWidth: 2,
-          data: window.chartData.data,
+          data: chartData.data,
         }],
       },
       options: {
@@ -65,10 +67,6 @@ $.ajax({
     console.log('Error getting chart data');
   }
 });
-// -- Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#292b2c';
-// -- Area Chart Example
 // -- Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
