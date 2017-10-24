@@ -103,11 +103,9 @@ $.ajax({
             }
           }],
           yAxes: [{
-            /*ticks: {
-              min: 0,
-              max: 20,
-              maxTicksLimit: 5
-            },*/
+            ticks: {
+              beginAtZero: true
+            },
             gridLines: {
               display: true
             }
@@ -123,170 +121,224 @@ $.ajax({
     console.log('Error getting chart data');
   }
 });
-// -- Bar Chart Example
-var ctx = document.getElementById("myBarChart2");
-var myLineChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "rgb(0,0,128)",
-      borderColor: "rgb(0,0,128)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    }],
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
+// End Chart2
+// Start Chart3
+chart3data = {
+  labels: [],
+  data: []
+};
+$.ajax({
+  url: 'http://localhost/chart3',
+  dataType: 'JSON',
+  success: function(data) {
+    chart3data = data;
+    var ctx = document.getElementById("myBarChart2");
+    var myLineChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: chart3data.labels,
+        datasets: [{
+          label: "% Flight Count",
+          backgroundColor: "rgba(2,117,216,1)",
+          borderColor: "rgba(2,117,216,1)",
+          data: chart3data.data,
+        }],
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            time: {
+              unit: 'airline'
+            },
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              maxTicksLimit: 6
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            gridLines: {
+              display: true
+            }
+          }],
         },
-        gridLines: {
+        legend: {
           display: false
-        },
-        ticks: {
-          maxTicksLimit: 6
         }
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: 15000,
-          maxTicksLimit: 5
-        },
-        gridLines: {
-          display: true
-        }
-      }],
-    },
-    legend: {
-      display: false
-    }
+      }
+    });
+  },
+  error: function() {
+    console.log('Error getting chart data');
   }
 });
-// -- Bar Chart Example
-var ctx = document.getElementById("myBarChart3");
-var myLineChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "rgb(0,0,128)",
-      borderColor: "rgb(0,0,128)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    }],
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
+// End Chart3
+// Start Chart4
+chart4data = {
+  labels: [],
+  data: []
+};
+$.ajax({
+  url: 'http://localhost/chart4',
+  dataType: 'JSON',
+  success: function(data) {
+    chart4data = data;
+    var ctx = document.getElementById("myBarChart3");
+    var myLineChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: chart4data.labels,
+        datasets: [{
+          label: "% Flight Count",
+          backgroundColor: "rgba(2,117,216,1)",
+          borderColor: "rgba(2,117,216,1)",
+          data: chart4data.data,
+        }],
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            time: {
+              unit: 'origin'
+            },
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              maxTicksLimit: 6
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            gridLines: {
+              display: true
+            }
+          }],
         },
-        gridLines: {
+        legend: {
           display: false
-        },
-        ticks: {
-          maxTicksLimit: 6
         }
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: 15000,
-          maxTicksLimit: 5
-        },
-        gridLines: {
-          display: true
-        }
-      }],
-    },
-    legend: {
-      display: false
-    }
+      }
+    });
+  },
+  error: function() {
+    console.log('Error getting chart data');
   }
 });
-// -- Bar Chart Example
-var ctx = document.getElementById("myBarChart4");
-var myLineChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "rgba(2,117,216,1)",
-      borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    }],
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
+// End Chart4
+// Start Chart5
+chart5data = {
+  labels: [],
+  data: []
+};
+$.ajax({
+  url: 'http://localhost/chart5',
+  dataType: 'JSON',
+  success: function(data) {
+    chart5data = data;
+    var ctx = document.getElementById("myBarChart4");
+    var myLineChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: chart5data.labels,
+        datasets: [{
+          label: "% Flight Count",
+          backgroundColor: "rgba(2,117,216,1)",
+          borderColor: "rgba(2,117,216,1)",
+          data: chart5data.data,
+        }],
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            time: {
+              unit: 'airline'
+            },
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              maxTicksLimit: 6
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            gridLines: {
+              display: true
+            }
+          }],
         },
-        gridLines: {
+        legend: {
           display: false
-        },
-        ticks: {
-          maxTicksLimit: 6
         }
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: 15000,
-          maxTicksLimit: 5
-        },
-        gridLines: {
-          display: true
-        }
-      }],
-    },
-    legend: {
-      display: false
-    }
-  }
-}); // -- Bar Chart Example
-var ctx = document.getElementById("myBarChart5");
-var myLineChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "rgba(2,117,216,1)",
-      borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    }],
+      }
+    });
   },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
-        },
-        gridLines: {
-          display: false
-        },
-        ticks: {
-          maxTicksLimit: 6
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: 15000,
-          maxTicksLimit: 5
-        },
-        gridLines: {
-          display: true
-        }
-      }],
-    },
-    legend: {
-      display: false
-    }
+  error: function() {
+    console.log('Error getting chart data');
   }
 });
+// End Chart5
+// Start Chart6
+chart6data = {
+  labels: [],
+  data: []
+};
+$.ajax({
+  url: 'http://localhost/chart6',
+  dataType: 'JSON',
+  success: function(data) {
+    chart6data = data;
+    var ctx = document.getElementById("myBarChart5");
+    var myLineChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: chart6data.labels,
+        datasets: [{
+          label: "% Flight Count",
+          backgroundColor: "rgba(2,117,216,1)",
+          borderColor: "rgba(2,117,216,1)",
+          data: chart6data.data,
+        }],
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            time: {
+              unit: 'origin'
+            },
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              maxTicksLimit: 6
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            gridLines: {
+              display: true
+            }
+          }],
+        },
+        legend: {
+          display: false
+        }
+      }
+    });
+  },
+  error: function() {
+    console.log('Error getting chart data');
+  }
+});
+//End Chart6

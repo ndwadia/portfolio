@@ -36,7 +36,7 @@ exports.getData = function(req, res) {
         //category array
         var carrier = doc._id;
         //series 1 values array
-        var percent = Math.round(1000 * doc.count / total) / 10;
+        var percent = Math.round(10000 * doc.count / total) / 100;
         dim1.push(carrier);
         series1.push(percent);
       }

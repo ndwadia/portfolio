@@ -70,7 +70,7 @@ exports.getData = function(req, res) {
         }
       },
       {
-        $limit: 5
+        $limit: 7
       }
     ]).toArray(function(err, results) {
         if (err) throw err;
