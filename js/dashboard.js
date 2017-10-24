@@ -13,7 +13,7 @@ var result = parseQueryString(urlToParse);
 var _base_url = location.origin;
 var _carrier = result.carrier;
 if (_carrier == undefined) {
-  _carrier = 'WN';
+  _carrier = '9E';
 }
 // Chart.js scripts
 // -- Set new default font family and font color to mimic Bootstrap's default styling

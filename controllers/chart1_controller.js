@@ -23,7 +23,7 @@ exports.getData = function(req, res) {
       },
       {
         $sort: {
-          count: -1
+          _id: 1
         }
       }
     ]).toArray(function(err, results) {
