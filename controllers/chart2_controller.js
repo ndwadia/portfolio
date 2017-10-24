@@ -1,10 +1,11 @@
 var db = require('../db');
 exports.getData = function(req, res) {
+  var _carrier = req.query.carrier;
   var flights = db.get().collection('flights');
   flights.aggregate([{
         $match: {
           CARRIER: {
-            $eq: 'WN'
+            $eq: _carrier
           }
         }
       },
@@ -25,7 +26,7 @@ exports.getData = function(req, res) {
       flights.aggregate([{
         $match: {
           CARRIER: {
-            $eq: 'WN'
+            $eq: _carrier
           }
         }
       },
@@ -47,8 +48,8 @@ exports.getData = function(req, res) {
           rroute: {
             $cond: [{
               $lt: [{$cmp: ["$_id.ORIGIN", "$_id.DEST"]}, 0]},
-              {$concat: ["$_id.ORIGIN", ' - ', "$_id.DEST"]},
-              {$concat: ["$_id.DEST", ' - ', "$_id.ORIGIN"]}
+              {$concat: ["$_id.ORIGIN", '-', "$_id.DEST"]},
+              {$concat: ["$_id.DEST", '-', "$_id.ORIGIN"]}
             ]
           }
         }
