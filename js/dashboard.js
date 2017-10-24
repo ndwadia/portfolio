@@ -1,14 +1,31 @@
+var parseQueryString = function(url) {
+  var urlParams = {};
+  url.replace(
+    new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+    function($0, $1, $2, $3) {
+      urlParams[$1] = $3;
+    }
+  );
+  return urlParams;
+};
+var urlToParse = location.search;
+var result = parseQueryString(urlToParse);
+var _base_url = location.origin;
+var _carrier = result.carrier;
+if (_carrier == undefined) {
+  _carrier = 'WN';
+}
 // Chart.js scripts
 // -- Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#292b2c';
+Chart.defaults.global.defaultFontColor = '#000';
 // Start Chart1
-chart1data = {
+var chart1data = {
   labels: [],
   data: []
 };
 $.ajax({
-  url: 'http://localhost/chart1',
+  url: _base_url + '/chart1',
   dataType: 'JSON',
   success: function(data) {
     chart1data = data;
@@ -20,7 +37,6 @@ $.ajax({
         labels: chart1data.labels,
         datasets: [{
           data: chart1data.data,
-          legend: false,
           backgroundColor: palette('tol-rainbow', chart1data.data.length).map(function(hex) {
             return '#' + hex;
           })
@@ -61,6 +77,16 @@ $.ajax({
         }
       }
     });
+    ctx.onclick = function(evt) {
+      var activePoints = myPieChart.getElementsAtEvent(evt);
+      if (activePoints[0]) {
+        var chartData = activePoints[0]._chart.config.data;
+        var idx = activePoints[0]._index;
+        var label = chartData.labels[idx];
+        var url = location.origin + location.pathname + "?carrier=" + label;
+        location.href = url;
+      }
+    };
   },
   error: function() {
     console.log('Error getting chart data');
@@ -68,12 +94,13 @@ $.ajax({
 });
 // End Chart1
 // Start Chart2
-chart2data = {
+var chart2data = {
   labels: [],
   data: []
 };
+var _url = _base_url + '/chart2?carrier=' + _carrier;
 $.ajax({
-  url: 'http://localhost/chart2',
+  url: _url,
   dataType: 'JSON',
   success: function(data) {
     chart2data = data;
@@ -90,6 +117,18 @@ $.ajax({
         }],
       },
       options: {
+        title: {
+          display: true,
+          text: 'Airline: ' + _carrier
+        },
+        layout: {
+          padding: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: -12
+          }
+        },
         scales: {
           xAxes: [{
             time: {
@@ -99,7 +138,8 @@ $.ajax({
               display: false
             },
             ticks: {
-              maxTicksLimit: 6
+              fontSize: 12,
+              maxTicksLimit: 7
             }
           }],
           yAxes: [{
@@ -123,12 +163,12 @@ $.ajax({
 });
 // End Chart2
 // Start Chart3
-chart3data = {
+var chart3data = {
   labels: [],
   data: []
 };
 $.ajax({
-  url: 'http://localhost/chart3',
+  url: _base_url + '/chart3',
   dataType: 'JSON',
   success: function(data) {
     chart3data = data;
@@ -154,7 +194,7 @@ $.ajax({
               display: false
             },
             ticks: {
-              maxTicksLimit: 6
+              maxTicksLimit: 10
             }
           }],
           yAxes: [{
@@ -178,12 +218,12 @@ $.ajax({
 });
 // End Chart3
 // Start Chart4
-chart4data = {
+var chart4data = {
   labels: [],
   data: []
 };
 $.ajax({
-  url: 'http://localhost/chart4',
+  url: _base_url + '/chart4',
   dataType: 'JSON',
   success: function(data) {
     chart4data = data;
@@ -209,7 +249,7 @@ $.ajax({
               display: false
             },
             ticks: {
-              maxTicksLimit: 6
+              maxTicksLimit: 10
             }
           }],
           yAxes: [{
@@ -233,12 +273,12 @@ $.ajax({
 });
 // End Chart4
 // Start Chart5
-chart5data = {
+var chart5data = {
   labels: [],
   data: []
 };
 $.ajax({
-  url: 'http://localhost/chart5',
+  url: _base_url + '/chart5',
   dataType: 'JSON',
   success: function(data) {
     chart5data = data;
@@ -264,7 +304,7 @@ $.ajax({
               display: false
             },
             ticks: {
-              maxTicksLimit: 6
+              maxTicksLimit: 10
             }
           }],
           yAxes: [{
@@ -288,12 +328,12 @@ $.ajax({
 });
 // End Chart5
 // Start Chart6
-chart6data = {
+var chart6data = {
   labels: [],
   data: []
 };
 $.ajax({
-  url: 'http://localhost/chart6',
+  url: _base_url + '/chart6',
   dataType: 'JSON',
   success: function(data) {
     chart6data = data;
@@ -319,7 +359,7 @@ $.ajax({
               display: false
             },
             ticks: {
-              maxTicksLimit: 6
+              maxTicksLimit: 10
             }
           }],
           yAxes: [{
