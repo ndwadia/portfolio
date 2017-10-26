@@ -10,7 +10,6 @@ var parseQueryString = function(url) {
 };
 var urlToParse = location.search;
 var result = parseQueryString(urlToParse);
-var _base_url = location.origin;
 var _carrier = result.carrier;
 if (_carrier == undefined) {
   _carrier = '9E';
@@ -25,7 +24,7 @@ var chart1data = {
   data: []
 };
 $.ajax({
-  url: _base_url + '/chart1',
+  url: location.origin + '/chart1',
   dataType: 'JSON',
   success: function(data) {
     chart1data = data;
@@ -98,7 +97,7 @@ var chart2data = {
   labels: [],
   data: []
 };
-var _url = _base_url + '/chart2?carrier=' + _carrier;
+var _url = location.origin + '/chart2?carrier=' + _carrier;
 $.ajax({
   url: _url,
   dataType: 'JSON',
@@ -168,7 +167,7 @@ var chart3data = {
   data: []
 };
 $.ajax({
-  url: _base_url + '/chart3',
+  url: location.origin + '/chart3',
   dataType: 'JSON',
   success: function(data) {
     chart3data = data;
@@ -223,7 +222,7 @@ var chart4data = {
   data: []
 };
 $.ajax({
-  url: _base_url + '/chart4',
+  url: location.origin + '/chart4',
   dataType: 'JSON',
   success: function(data) {
     chart4data = data;
@@ -278,7 +277,7 @@ var chart5data = {
   data: []
 };
 $.ajax({
-  url: _base_url + '/chart5',
+  url: location.origin + '/chart5',
   dataType: 'JSON',
   success: function(data) {
     chart5data = data;
@@ -333,7 +332,7 @@ var chart6data = {
   data: []
 };
 $.ajax({
-  url: _base_url + '/chart6',
+  url: location.origin + '/chart6',
   dataType: 'JSON',
   success: function(data) {
     chart6data = data;

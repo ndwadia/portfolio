@@ -1,21 +1,3 @@
-var parseQueryString = function(url) {
-  var urlParams = {};
-  url.replace(
-    new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-    function($0, $1, $2, $3) {
-      urlParams[$1] = $3;
-    }
-  );
-  return urlParams;
-};
-var urlToParse = location.search;
-var result = parseQueryString(urlToParse);
-var _base_url = location.origin;
-var _carrier = result.carrier;
-if (_carrier == undefined) {
-  _carrier = '9E';
-}
-// Chart.js scripts
 // -- Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#000';
@@ -27,7 +9,7 @@ var bubblechartdata = {
   data3: []
 };
 $.ajax({
-  url: _base_url + '/bubbleChart',
+  url: location.origin + '/bubbleChart',
   dataType: 'JSON',
   success: function(data) {
     bubblechartdata = data;
