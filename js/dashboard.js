@@ -29,7 +29,7 @@ $.ajax({
   dataType: 'JSON',
   success: function(data) {
     chart1data = data;
-    var seq = palette('tol-rainbow', 14);
+    var seq = palette('tol-rainbow', chart1data.labels.length);
     var ctx = document.getElementById("myPieChart");
     var myPieChart = new Chart(ctx, {
       type: 'pie',
