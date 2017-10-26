@@ -422,6 +422,10 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   margin-bottom: -16px !important;
 }
 
+.container-fluid {
+  padding: 0px;
+}
+
 table caption {
   caption-side: top;
   margin: 5px 0px 5px 0px;
