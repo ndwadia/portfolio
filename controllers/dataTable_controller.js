@@ -1,59 +1,27 @@
 var db = require('../db');
 exports.getData = function(req, res) {
+  var _origin = req.query.origin;
   var flights = db.get().collection('flights');
-  flights.aggregate([{
-      $group: {
-        _id: "$CARRIER",
-        count_all: {
-          $sum: 1
-        },
-        count_cancelled: {
-          $sum: {
-            $cond: [{
-              $gt: [
-                "$CANCELLED",
-                0
-              ]
-            }, 1, 0]
-          }
-        }
-      }
+  flights.find({
+    CANCELLED: {
+      $gt: 0
     },
-    {
-      $project: {
-        count_all: 1,
-        count_cancelled: 1,
-        percent_cancelled: {
-          $multiply: [{
-            $divide: [100, "$count_all"]
-          }, "$count_cancelled"]
-        }
-      }
-    },
-    {
-      $sort: {
-        percent_cancelled: -1
-      }
-    },
-    {
-      $limit: 10
+    ORIGIN: {
+      $eq: _origin
     }
-  ]).toArray(function(err, results) {
+  }, {
+    _id: 0,
+    CARRIER: 1,
+    DEST: 1,
+    FL_DATE: 1,
+    CRS_DEP_TIME: 1,
+    CANCELLATION_CODE: 1
+  }).limit(100).sort({
+    CARRIER: 1
+  }).toArray(function(err, result) {
     if (err) throw err;
-    // console.log(results);
-    var dim1 = [];
-    var series1 = [];
-    for (var index in results) {
-      var doc = results[index];
-      var carrier = doc._id;
-      var percent = Math.round(100 * doc.percent_cancelled) / 100;
-      dim1.push(carrier);
-      series1.push(percent);
-    }
-    var resObj = {
-      "labels": dim1,
-      "data": series1
-    };
-    res.status(200).json(resObj);
+    var dataObj = {};
+    dataObj.data = result;
+    res.status(200).json(dataObj);
   });
 };

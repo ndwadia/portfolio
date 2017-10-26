@@ -35,4 +35,5 @@ $(document).ready(function() {
       }
     ]
   });
+  document.getElementById("insert_caption").innerHTML = "Origin: " + _origin;
 });
