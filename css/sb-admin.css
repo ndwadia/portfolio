@@ -421,3 +421,13 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   margin-top: 0px !important;
   margin-bottom: -16px !important;
 }
+
+table caption {
+  caption-side: top;
+  margin: 5px 0px 5px 0px;
+  padding: 5px;
+  text-align: center;
+  font: 12;
+  font-weight: bold;
+  color: black;
+}
