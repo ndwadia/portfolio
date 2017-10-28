@@ -25,3 +25,17 @@ exports.getData = function(req, res) {
     res.status(200).json(dataObj);
   });
 };
+exports.searchOrigin = function(req, res) {
+  var term = req.query.term;
+  var term2 = "^" + term.toUpperCase();
+  var regex = new RegExp(term2);
+  var flights = db.get().collection('flights');
+  flights.distinct("ORIGIN", {
+    "ORIGIN": regex
+  }, function(err, result) {
+    if (err) throw err;
+    var result2 = result.sort();
+    var result3 = result2.slice(0, 20);
+    res.status(200).json(result3);
+  });
+};

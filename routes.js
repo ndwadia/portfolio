@@ -19,4 +19,5 @@ module.exports = function(app) {
   app.get('/chart6', chart6.getData);
   app.get('/bubbleChart', bubbleChart.getData);
   app.get('/dataTable', dataTable.getData);
+  app.get('/searchOrigin', dataTable.searchOrigin);
 };
