@@ -1,19 +1,3 @@
-var parseQueryString = function(url) {
-  var urlParams = {};
-  url.replace(
-    new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-    function($0, $1, $2, $3) {
-      urlParams[$1] = $3;
-    }
-  );
-  return urlParams;
-};
-var urlToParse = location.search;
-var result = parseQueryString(urlToParse);
-var _carrier = result.carrier;
-if (_carrier == undefined) {
-  _carrier = '9E';
-}
 // Chart.js scripts
 // -- Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -82,8 +66,67 @@ $.ajax({
         var chartData = activePoints[0]._chart.config.data;
         var idx = activePoints[0]._index;
         var label = chartData.labels[idx];
-        var url = location.origin + location.pathname + "?carrier=" + label;
-        location.href = url;
+        var _url = location.origin + "/chart2?carrier=" + label;
+        $.ajax({
+          url: _url,
+          dataType: 'JSON',
+          success: function(data) {
+            window.myDetailChart.destroy();
+            chart2data = data;
+            var ctx = document.getElementById("myBarChart1");
+            window.myDetailChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: chart2data.labels,
+                datasets: [{
+                  label: "% Flight Count",
+                  backgroundColor: "rgba(2,117,216,1)",
+                  borderColor: "rgba(2,117,216,1)",
+                  data: chart2data.data,
+                }],
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: 'Airline: ' + label
+                },
+                layout: {
+                  padding: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: -12
+                  }
+                },
+                scales: {
+                  xAxes: [{
+                    time: {
+                      unit: 'route'
+                    },
+                    gridLines: {
+                      display: false
+                    },
+                    ticks: {
+                      fontSize: 12,
+                      maxTicksLimit: 7
+                    }
+                  }],
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    },
+                    gridLines: {
+                      display: true
+                    }
+                  }],
+                },
+                legend: {
+                  display: false
+                }
+              }
+            });
+          }
+        });
       }
     };
   },
@@ -97,14 +140,14 @@ var chart2data = {
   labels: [],
   data: []
 };
-var _url = location.origin + '/chart2?carrier=' + _carrier;
+var _url = location.origin + '/chart2?carrier=9E';
 $.ajax({
   url: _url,
   dataType: 'JSON',
   success: function(data) {
     chart2data = data;
     var ctx = document.getElementById("myBarChart1");
-    var myLineChart = new Chart(ctx, {
+    window.myDetailChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: chart2data.labels,
@@ -118,7 +161,7 @@ $.ajax({
       options: {
         title: {
           display: true,
-          text: 'Airline: ' + _carrier
+          text: 'Airline: 9E'
         },
         layout: {
           padding: {
